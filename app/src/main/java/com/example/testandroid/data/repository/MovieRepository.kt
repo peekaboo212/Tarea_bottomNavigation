@@ -17,4 +17,10 @@ class MovieRepository @Inject constructor(
         networkCall = { remoteDataSource.getPopularMovies() },
         saveCallResult = { localDataSource.insertAll(it.results.toMovieEntityList(MovieType.POPULAR.value)) }
     )
+
+    fun getUpcomingMovies() = performGetOperation(
+        databaseQuery = { localDataSource.getAllMovies(MovieType.POPULAR.value) },
+        networkCall = { remoteDataSource.getUpcomingMovies() },
+        saveCallResult = { localDataSource.insertAll(it.results.toMovieEntityList(MovieType.POPULAR.value)) }
+    )
 }
